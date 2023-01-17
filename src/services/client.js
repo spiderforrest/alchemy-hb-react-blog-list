@@ -4,6 +4,11 @@ export const client = createClient(
   process.env.REACT_APP_SUPABASE_KEY
 );
 
+export async function getBlogs() {
+  const response = await client.from('blogs').select('*');
+  return checkError(response);
+}
+
 export function checkError({ data, error }) {
   if (error) {
     throw error;
